@@ -8,8 +8,8 @@ $valid_fields = TRUE;
 
 //Router Signatures
 
-$client_mac = Utils::replaceDashWithColon($_POST['mac']);
-$node_mac = Utils::replaceDashWithColon($_POST['node_mac']);
+$client_mac = Utils::replaceDashWithColon($_POST['client_mac']);
+$node_mac = Utils::replaceDashWithColon($_POST['access_point_mac']);
 $controller_ip = $_POST['controller_ip'];
 $controller_port = $_POST['controller_port'];
 $node_frame_case = $_POST['res'];
