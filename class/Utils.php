@@ -137,23 +137,23 @@ class Utils
     public static function calculate_new_ra(&$dict, $currentSignature, $secret)
     {
         $code = $dict['CODE'];
-        $dict['RA'] = hash('md5', $code . $currentSignature . $secret);
+        $dict['RA'] = hash('md5', $code . hex2bin($currentSignature) . $secret);
     }
 
     public static function decode_password($signature, $encoded, $secret)
     {
         if (!isset($signature))
-            return 1;
+            return FALSE;
 
         if (strlen($signature) != 32)
-            return 2;
+            return FALSE;
 
         $ra = hex2bin($signature);
         if ($ra === FALSE)
-            return 3;
+            return FALSE;
 
         if ((strlen($encoded) % 32) != 0)
-            return 4;
+            return FALSE;
 
         $bincoded = hex2bin($encoded);
 
@@ -180,23 +180,6 @@ class Utils
         }
 
         return $password;
-    }
-
-    /**
-     * validate_login - check if the login was valid for tos page
-     *
-     * Returns TRUE for valid logins, FALSE on errors
-     */
-    public static function validate_login($username, $password)
-    {
-        require_once(dirname(__FILE__) . '/' . '../../../config.php');
-        $token_ttl = constant("OPENMESH_TOKEN_VALID_DURATION");
-        $secret = constant('SHARED_SECRET');
-
-        /* generate signature and compare with the password */
-        $signature = base64_encode(hash_hmac('sha256', $username, $secret, true));
-        
-        return ($signature == $password);
     }
 
 }
