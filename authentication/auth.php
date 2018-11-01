@@ -25,9 +25,7 @@ $user_upload_limit = 1000;
 $seconds_allowed = 1 * 60;
 
 $authResponse = array(
-    'CODE' => 'REJECT',
-    'RA' => $_GET['ra'],
-    'BLOCKED_MSG' => 'Rejected! This doesnt look like a valid request',
+    'RA' => $_GET['ra']
 );
 
 switch ($type) {
@@ -37,10 +35,16 @@ switch ($type) {
         $username = $_GET['username'];
         $password = Utils::decode_password($authResponse, $_GET['password'], $secret);
 
+        $authResponse['CODE'] = 'ACCEPT';
+        $authResponse['BLOCKED_MSG'] = 'Rejected!';
+
         break;
 
     case 'status':
 
+        $authResponse['CODE'] = 'ACCEPT';
+
+        
         break;
 
     case 'acct':
