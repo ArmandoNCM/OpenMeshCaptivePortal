@@ -26,12 +26,12 @@ $person_email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
 $city = filter_input(INPUT_POST, "city", FILTER_SANITIZE_STRING);
 
 $phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_STRING);
-$phone = Tool::remove_non_numeric_characters($phone);
+$phone = Utils::remove_non_numeric_characters($phone);
 
 if ($person_email){
     strtolower(trim($person_email));
 } else {
-    Log::print("Error in the email validation.", "error", __FILE__, __LINE__);
+    Logger::log("Error in the email validation.", "error", __FILE__, __LINE__);
     $valid_fields = FALSE;
 }
 
@@ -68,21 +68,21 @@ if ($valid_fields) {
     // TODO consume WS sending information
 
     $apiUrl = constant('API_URL') . '/exhibition-forms/expo-audi/lead';
-    $apiResponse = Tool::perform_http_request('POST', $apiUrl, $dataJson);
+    $apiResponse = Utils::perform_http_request('POST', $apiUrl, $dataJson);
     
     if (isset($apiResponse) && array_key_exists('response_code', $apiResponse)){
         if ($apiResponse['response_code'] == 204){
 
-            Log::print("Granting access to person:\n\n$dataJson", 'message', __FILE__, __LINE__);
+            Logger::log("Granting access to person:\n\n$dataJson", 'message', __FILE__, __LINE__);
             require_once(dirname(__FILE__).'/grant_access.php');   
         } else {
             // There was a response error
-            Log::print("Lead WS responded with Response HTTP Code: " . $apiResponse['response_code'], 'error', __FILE__, __LINE__);
-            Log::print("Lead WS responded with Response Body:\n\n" . $apiResponse['response_body'], 'debug', __FILE__, __LINE__);
+            Logger::log("Lead WS responded with Response HTTP Code: " . $apiResponse['response_code'], 'error', __FILE__, __LINE__);
+            Logger::log("Lead WS responded with Response Body:\n\n" . $apiResponse['response_body'], 'debug', __FILE__, __LINE__);
         }
     } else {
         // Couldn't consume WS
-        Log::print("Could not consume Lead WS", 'error', __FILE__, __LINE__);
+        Logger::log("Could not consume Lead WS", 'error', __FILE__, __LINE__);
     }
 }
 ?>
