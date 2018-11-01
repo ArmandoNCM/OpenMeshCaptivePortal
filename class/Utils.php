@@ -16,10 +16,6 @@ class Utils
         return $string_final;
     }
 
-    // This method will perform an action/method through HTTP/API calls
-    // Parameter description:
-    // Method= POST, PUT, GET etc
-    // Data= array("param" => "value") ==> index.php?param=value
     public static function perform_http_request($method, $url, $data = false)
     {
         $curl = curl_init();
@@ -53,18 +49,18 @@ class Utils
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
-        $responseBody = curl_exec($curl);
-        $responseCode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+        $response_body = curl_exec($curl);
+        $response_code = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
         
         $err = curl_error($curl);
 
         $response = FALSE;
         if ($err) {
-            Logger::log("cURL Error #: " . json_encode($err), "message", __FILE__, __LINE__);
+            Log::print("cURL Error #: " . json_encode($err), "message", __FILE__, __LINE__);
         } else {
             $response = array(
-                'responseBody' => $responseBody,
-                'responseCode' => $responseCode
+                'response_body' => $response_body,
+                'response_code' => $response_code
             );
         }
         curl_close($curl);
