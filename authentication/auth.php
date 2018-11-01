@@ -31,7 +31,9 @@ switch ($type) {
 
         /* decode password */
         $username = $_GET['username'];
-        $password = Utils::decode_password($authResponse, $_GET['password'], $secret);
+        $password = Utils::decode_password($_GET, $_GET['password'], $secret);
+
+        Logger::log("$username and $password", 'credentials', __FILE__, __LINE__);
 
         $authResponse['CODE'] = 'ACCEPT';
         $authResponse['SECONDS'] = '60';

@@ -21,7 +21,7 @@ $node_challenge = $_POST['challenge'];
 
 $username = 'any_username';
 
-$password = base64_encode(hash_hmac('sha256', $username, $secret, true));
+$password = 'any_password'; //base64_encode(hash_hmac('sha256', $username, $secret, true));
 // Encrypt Password
 $encrypted_password = Utils::encode_password_challenge($password,$node_challenge,$secret);
 $redirectUrl = 'http://' . $node_private_ip . ':' . $node_private_port . '/logon?username=' . urlencode($username) . '&password=' . urlencode($encrypted_password);
