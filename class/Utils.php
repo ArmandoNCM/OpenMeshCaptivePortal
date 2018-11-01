@@ -1,7 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . '/../constants.php');
-require_once(dirname(__FILE__) . '/Log.php');
+require_once(dirname(__FILE__) . '/Logger.php');
 
 class Utils
 {
