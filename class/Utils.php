@@ -134,10 +134,25 @@ class Utils
      * @dict: Dictionary containing old ra and code. new ra is directly stored in it
      * @secret: Shared secret between node and server
      */
-    public static function calculate_new_ra(&$dict, $currentSignature, $secret)
+    static function calculate_new_ra(&$dict, $secret)
     {
+        if (!array_key_exists('CODE', $dict)){
+            return;
+        }
+
         $code = $dict['CODE'];
-        $dict['RA'] = hash('md5', $code . $currentSignature . $secret);
+
+        if (!array_key_exists('RA', $dict))
+            return;
+
+        if (strlen($dict['RA']) != 32)
+            return;
+
+        $ra = hex2bin($dict['RA']);
+        if ($ra === FALSE)
+            return;
+
+        $dict['RA'] = hash('md5', $code . $ra . $secret);
     }
 
     public static function decode_password($signature, $encoded, $secret)
