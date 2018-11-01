@@ -140,28 +140,20 @@ class Utils
         $dict['RA'] = hash('md5', $code . $currentSignature . $secret);
     }
 
-    /**
-     * decode_password - decode encoded password to ascii string
-     * @dict: dictionary containing request RA
-     * @encoded: The encoded password
-     * @secret: Shared secret between node and server
-     *
-     * Returns decoded password or FALSE on error
-     */
-    public static function decode_password($dict, $encoded, $secret)
+    public static function decode_password($signature, $encoded, $secret)
     {
-        if (!array_key_exists('RA', $dict))
-            return FALSE;
+        if (!isset($signature))
+            return 1;
 
-        if (strlen($dict['RA']) != 32)
-            return FALSE;
+        if (strlen($signature) != 32)
+            return 2;
 
-        $ra = hex2bin($dict['RA']);
+        $ra = hex2bin($signature);
         if ($ra === FALSE)
-            return FALSE;
+            return 3;
 
         if ((strlen($encoded) % 32) != 0)
-            return FALSE;
+            return 4;
 
         $bincoded = hex2bin($encoded);
 

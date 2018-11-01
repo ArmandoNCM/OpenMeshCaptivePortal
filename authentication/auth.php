@@ -31,7 +31,7 @@ switch ($type) {
 
         /* decode password */
         $username = $_GET['username'];
-        $password = Utils::decode_password($_GET, $_GET['password'], $secret);
+        $password = Utils::decode_password($signature, $_GET['password'], $secret);
 
         Logger::log("$username and $password", 'credentials', __FILE__, __LINE__);
 

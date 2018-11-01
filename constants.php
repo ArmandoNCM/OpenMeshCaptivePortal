@@ -6,7 +6,7 @@ define('DEBUG', TRUE);
 
 /* Claves de cifrado */
 //Codigo usado para firmar el usuario - Funciona entre Scripts
-define('SHARED_SECRET', 'trinitip2018*');
+define('SHARED_SECRET', 'ThisIsASecret');
 
 /* Parametros de seguridad de los scripts de validacion */
 //Tiempo en el que se puede utilizar un token, no modificar
