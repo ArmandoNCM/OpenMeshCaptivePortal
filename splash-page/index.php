@@ -7,6 +7,7 @@ require_once(dirname(__FILE__) . '/../class/Logger.php');
 $browserData = get_browser(NULL, TRUE);
 $browser = $browserData['browser'];
 $platform = $browserData['platform'];
+Logger::log("Browser and Platform: $browser & $platform", "info", __FILE__, __LINE__);
 
 //'res' parameter specifies the particular operation the server is being asked to carry out.
 $frame_case = $_GET['res'];
