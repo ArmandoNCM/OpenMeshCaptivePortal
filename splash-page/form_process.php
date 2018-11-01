@@ -28,6 +28,8 @@ $city = filter_input(INPUT_POST, "city", FILTER_SANITIZE_STRING);
 $phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_STRING);
 $phone = Utils::remove_non_numeric_characters($phone);
 
+$open_external_browser = array_key_exists('open_external_browser', $_POST);
+
 if ($person_email){
     strtolower(trim($person_email));
 } else {
