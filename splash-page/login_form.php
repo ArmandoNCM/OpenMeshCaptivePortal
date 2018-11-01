@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . '/../constants.php');
-$html_form_process_url = constant('ROOT') . '/splash-page/form_process.php';
+$html_form_process_url = '/form_process.php';
 ?>
 <!DOCTYPE html>
 <html>
