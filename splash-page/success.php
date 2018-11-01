@@ -4,6 +4,7 @@ if ($open_external_browser){
 } else {
 	$destination = 'https://audi-client.sundevs.cloud/#/' . $phone;
 }
+Logger::log("Using destination: $destination", 'info', __FILE__, __LINE__);
 ?>
 <!DOCTYPE html>
 <html lang="en">
