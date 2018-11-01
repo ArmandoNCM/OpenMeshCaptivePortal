@@ -13,6 +13,9 @@ $node_mac = Utils::replaceDashWithColon($_GET['node']);
 //Device MAC
 $client_mac = Utils::replaceDashWithColon($_GET['mac']);
 
+// Signature
+$signature = $_GET['ra'];
+
 // Request Type
 $type = $_GET['type'];
 Logger::log("Authentication Server Received Request of Type: $type\nFrom Client Mac: $client_mac Through AP Node Mac: $node_mac", "message", __FILE__, __LINE__);
@@ -21,13 +24,7 @@ $user_download_limit = 2000;
 $user_upload_limit = 1000;
 $seconds_allowed = 1 * 60;
 
-/**
- * response - Standard response (it's modified depending on the result)
- */
-$authResponse = array(
-    'CODE' => 'REJECT',
-    'RA' => $_GET['ra']
-);
+$authResponse = array();
 
 switch ($type) {
     case 'login':
@@ -68,5 +65,5 @@ switch ($type) {
 };
 
 /* calculate new request authenticator based on answer and request -> send it out */
-Utils::calculate_new_ra($authResponse, $secret);
+Utils::calculate_new_ra($authResponse, $signature, $secret);
 Utils::print_dictionary($authResponse);
