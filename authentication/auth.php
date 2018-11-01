@@ -24,9 +24,7 @@ $user_download_limit = 2000;
 $user_upload_limit = 1000;
 $seconds_allowed = 1 * 60;
 
-$authResponse = array(
-    'RA' => $_GET['ra']
-);
+$authResponse = array();
 
 switch ($type) {
     case 'login':
@@ -36,15 +34,14 @@ switch ($type) {
         $password = Utils::decode_password($authResponse, $_GET['password'], $secret);
 
         $authResponse['CODE'] = 'ACCEPT';
-        $authResponse['BLOCKED_MSG'] = 'Rejected!';
+        $authResponse['SECONDS'] = '60';
+        $authResponse['DOWNLOAD'] = '2000';
+        $authResponse['UPLOAD'] = '1000';
 
         break;
 
     case 'status':
 
-        $authResponse['CODE'] = 'ACCEPT';
-
-        
         break;
 
     case 'acct':
