@@ -1,12 +1,11 @@
 <?php
-
+require_once(dirname(__FILE__) . '/../constants.php');
+require_once(dirname(__FILE__) . '/../class/Utils.php');
 //General validation
 $valid_fields = TRUE;
 
 //Router Signatures
 $secret = constant('SHARED_SECRET');
-
-$login_type = $_POST['login_type'];
 
 $client_mac = Utils::replaceDashWithColon($_POST['mac']);
 
