@@ -12,6 +12,8 @@ define('SHARED_SECRET', 'ThisIsASecret');
 //Tiempo en el que se puede utilizar un token, no modificar
 define('OPENMESH_TOKEN_VALID_DURATION', '120');
 
+define('API_URL', 'https://dev-api.trinitip.com');
+
 define('ROOT', dirname(__FILE__));
 
 ?>

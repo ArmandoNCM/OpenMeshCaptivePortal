@@ -4,6 +4,10 @@
 require_once(dirname(__FILE__) . '/../class/Utils.php');
 require_once(dirname(__FILE__) . '/../class/Logger.php');
 
+$browserData = get_browser(NULL, TRUE);
+$browser = $browserData['browser'];
+$platform = $browserData['platform'];
+
 //'res' parameter specifies the particular operation the server is being asked to carry out.
 $frame_case = $_GET['res'];
 
@@ -31,23 +35,28 @@ switch ($frame_case) {
         $original_user_url = $_GET['userurl'];
 
         // AP's Private IP Address
-        $node_private_ip = $_GET['uamip'];
+        $controller_ip = $_GET['uamip'];
 
         // AP's Port used in conjunction with the Private Address obtained in the previous line
-        $node_private_port = $_GET['uamport'];
+        $controller_port = $_GET['uamport'];
 
         // Challenge
         $node_challenge = $_GET['challenge'];
 
         // Hidden fields to be sent in the login form
-        $html_form_hidden_fields_array = array(
-            "mac" => $client_mac,
-            "node_mac" => $access_point_mac,
-            "uamip" => $node_private_ip,
-            "uamport" => $node_private_port,
-            "res" => $frame_case,
-            "challenge" => $node_challenge
+        $hidden_fields_array = array(
+            'client_mac' => $client_mac,
+            'access_point_mac' => $access_point_mac,
+            'controller_ip' => $controller_ip,
+            'controller_port' => $controller_port,
+            'res' => $frame_case,
+            'challenge' => $node_challenge
         );
+
+        if ($platform == 'Android'){
+            $hidden_fields_array['open_external_browser'] = TRUE;
+        }
+
         require_once(dirname(__FILE__) . '/../splash-page/login_form.php');
         
         break;

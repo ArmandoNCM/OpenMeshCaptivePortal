@@ -1,0 +1,83 @@
+body {
+	margin: 0;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+#header {
+	background-image: url('/ExtremeNetworksCaptivePortal/splash-page/assets/images/header-portal.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 10px;
+	height: 150px;
+}
+
+#information {
+	text-align: center;
+	font-size: 15px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+#information span {
+	display: block;
+}
+
+#form-container {
+	padding: 10px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-group span {
+	display: block;
+	font-size: 12px;
+}
+
+.form-group input[type=text] {
+
+}
+
+.form-control {
+	margin-top: 10px;
+	border: 0;
+	border-bottom: 1px solid #333;
+	width: 100%;
+}
+
+.form-control:focus {
+	outline: none;
+}
+
+.btn-red {
+	background-color: #BB0A30;
+	width: 100%;
+	color: #fff;
+	border: 0;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: 100;
+}
+
+.select-cities {
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+}
+
+#terms {
+	text-align: center;
+	font-size: 12px;
+}
+
+#terms a {
+	color: #BB0A30;
+}
+
+#tos {
+	margin-top: 50px;
+	font-size: 12px;
+	padding: 10px;
+}
