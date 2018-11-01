@@ -7,12 +7,12 @@ $html_form_process_url = '/splash-page/form_process.php';
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/ExtremeNetworksCaptivePortal/splash-page/assets/css/styles.css">
+	<link rel="stylesheet" href="/splash-page/assets/css/styles.css">
 	<title>Conexión Audi</title>
 </head>
 <body>
 	<div id="header">
-		<img src="/ExtremeNetworksCaptivePortal/splash-page/assets/images/logo-audi.png">
+		<img src="/splash-page/assets/images/logo-audi.png">
 		<p style="color: white; position: relative; bottom: -50%; text-align: center;">Bienvenido a la nueva era de Audi.</p>
 	</div>
 	<div id="information">
